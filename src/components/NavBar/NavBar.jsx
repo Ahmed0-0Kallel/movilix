@@ -22,7 +22,7 @@ const NavBar = () => {
                         color= "inherit"
                         edge = "start"
                         style={ {outline: 'none'}}
-                        onClick = {() => {}}
+                        onClick = {() => setMobileOpen ( ( prevMobileOpen ) => !prevMobileOpen ) } 
                         className = {classes.menuButton}
                     >
                         <Menu />
@@ -50,7 +50,7 @@ const NavBar = () => {
                             <Avatar
                             
                                 style= {{ width:30, height:30 }}
-                                alt= 'Profile'
+                                alt=  'Profile'
                                 src = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
 
                              />
@@ -62,14 +62,16 @@ const NavBar = () => {
                 {isMobile && 'search..'}
             </Toolbar>
         </AppBar> 
-        //sidebar
+        {/*sidebar*/}
         <div>
             <nav className={classes.drawer}>
-                        {isMobile? (
+
+                        { isMobile? (
                             <Drawer
                                 variant= "temporary"
                                 anchor= "right" 
                                 open ={mobileOpen}
+                                onClose= {()=> setMobileOpen ((prevMobileOpen)=> !prevMobileOpen) }
                                 classes= {{paper: classes.drawerPaper}}
                                 ModalProps= {{keepMounted: true}}
                             >
@@ -77,6 +79,7 @@ const NavBar = () => {
 
                             </Drawer>
                         ):(
+                            
                             <Drawer classes ={{paper: classes.drawerPaper}} variant="permanent" open>
                                 <Sidebar setMobileOpen={setMobileOpen}/>
                             </Drawer>
