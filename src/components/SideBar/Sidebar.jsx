@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 import { ClassNames } from '@emotion/react';
 import useStyles from './styles';
+import { useGetGenresQuery } from '../../services/TMDB';
 
 const demoCategories = [ 
   {label: 'Comedy', value: 'comedy'},
@@ -25,6 +26,8 @@ const blueLogo= "";
 const Sidebar = ({setMobileOpen}) => {
     const theme = useTheme();
     const classes= useStyles();
+    const {data,isFetching,error}=useGetGenresQuery();
+    console.log(data);
   return (
     <>
         <Link to="/" className={classes.imageLink}>
